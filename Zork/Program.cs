@@ -53,15 +53,20 @@ namespace Zork
         {
             bool didMove = false;
 
-            if(command == Commands.EAST && CurrentRoomIndex < Rooms.Length - 1)
-            {
-                CurrentRoomIndex++;
-                didMove = true;
-            }
-            else if (command == Commands.WEST && CurrentRoomIndex > 0)
+            if (command != Commands.NORTH && 
+                command != Commands.SOUTH && 
+                command != Commands.EAST && 
+                command != Commands.WEST) throw new InvalidOperationException("Invalid command in Move");
+
             {
                 CurrentRoomIndex--;
                 didMove = true;
+                    didMove = true;
+                    break;
+                case Commands.WEST when (CurrentRoomIndex > 0):
+                    CurrentRoomIndex--;
+                    didMove = true;
+                    break;
             }
 
             return didMove;
