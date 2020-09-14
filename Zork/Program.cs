@@ -58,9 +58,10 @@ namespace Zork
                 command != Commands.EAST && 
                 command != Commands.WEST) throw new InvalidOperationException("Invalid command in Move");
 
+            switch(command)
             {
-                CurrentRoomIndex--;
-                didMove = true;
+                case Commands.EAST when (CurrentRoomIndex < Rooms.Length - 1):
+                    CurrentRoomIndex++;
                     didMove = true;
                     break;
                 case Commands.WEST when (CurrentRoomIndex > 0):
