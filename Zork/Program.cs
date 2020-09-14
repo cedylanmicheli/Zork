@@ -11,6 +11,7 @@ namespace Zork
             Commands command = Commands.UNKNOWN;
             while(command != Commands.QUIT)
             {
+                Console.WriteLine(Rooms[CurrentRoomIndex]);
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
@@ -27,7 +28,7 @@ namespace Zork
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        outputString = $"You moved {command}.";
+                        outputString =  Move(command) ?  $"You moved {command}." : outputString = "The way is shut!";
                         break;
                     default:
                         outputString = "Unknown command.";
@@ -40,6 +41,30 @@ namespace Zork
         private static Commands ToCommand(string commandString)
         {
             return Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN;
+        }
+
+        private static string[] Rooms = {
+            "Forest", "West of House", "Behind House", "Clearing", "Canyon View" 
+        };
+
+        private static int CurrentRoomIndex = 1;
+
+        private static bool Move(Commands command)
+        {
+            bool didMove = false;
+
+            if(command == Commands.EAST && CurrentRoomIndex < Rooms.Length - 1)
+            {
+                CurrentRoomIndex++;
+                didMove = true;
+            }
+            else if (command == Commands.WEST && CurrentRoomIndex > 0)
+            {
+                CurrentRoomIndex--;
+                didMove = true;
+            }
+
+            return didMove;
         }
     }
 }
