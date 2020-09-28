@@ -12,6 +12,8 @@ namespace Zork
         }
 
         private static readonly Dictionary<string, Room> RoomsByName = new Dictionary<string, Room>();
+        private static bool IsDirection(Commands command) => Directions.Contains(command);
+        private static (int Row, int Column) Location = (1, 1);
 
         private static readonly Room[,] Rooms = {
            {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View")},
@@ -26,8 +28,6 @@ namespace Zork
             Commands.EAST,
             Commands.WEST
         };
-
-        private static (int Row, int Column) Location = (1, 1);
 
         static void Main(string[] args)
         {
@@ -81,20 +81,16 @@ namespace Zork
             {
                 case Commands.NORTH when (Location.Row < Rooms.GetLength(0) - 1):
                     Location.Row++;
-                    break;
-               
+                    break;         
                 case Commands.SOUTH when (Location.Row > 0):
                     Location.Row--;
-                    break;
-                
+                    break;         
                 case Commands.EAST when (Location.Column < Rooms.GetLength(1) - 1):
                     Location.Column++;
-                    break;
-               
+                    break;      
                 case Commands.WEST when (Location.Column > 0):
                     Location.Column--;
                     break;
-                
                 default:
                     isValidMove = false;
                     break;
@@ -107,8 +103,6 @@ namespace Zork
         {
             return Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN;
         }
-
-        private static bool IsDirection(Commands command) => Directions.Contains(command);
 
         private static void InitializeRoomDescriptions()
         {
