@@ -1,17 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Zork
 {
     class Program
     {
+        static Program()
+        {
+            RoomMap = new Dictionary<string, Room>();
+            foreach (Room room in Rooms)
+            {
+                RoomMap[room.Name] = room;
+            }
+
+        }
 
         private static Room CurrentRoom
         {
             get { return Rooms[Location.Row, Location.Column]; }
         }
 
-        private static readonly Dictionary<string, Room> RoomsByName = new Dictionary<string, Room>();
+        private static readonly Dictionary<string, Room> RoomMap;
+        const string roomsFilename = "Rooms.txt";
         private static bool IsDirection(Commands command) => Directions.Contains(command);
         private static (int Row, int Column) Location = (1, 1);
 
@@ -31,7 +42,8 @@ namespace Zork
 
         static void Main(string[] args)
         {
-            InitializeRoomDescriptions();
+            
+            InitializeRoomDescriptions(roomsFilename);
             Console.WriteLine("Welcome to Zork!");
 
             Room previousRoom = null;
@@ -104,24 +116,33 @@ namespace Zork
             return Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN;
         }
 
-        private static void InitializeRoomDescriptions()
+        private static void InitializeRoomDescriptions(string roomsFilename)
         {
-            foreach (Room room in Rooms)
+            const string delimiter = "##";
+            const int expectedFieldCount = 2;
+
+            string[] lines = File.ReadAllLines(roomsFilename);
+          
+            foreach (string line in lines)
             {
-                RoomsByName.Add(room.Name, room);
-            }
+                string[] fields = line.Split(delimiter);
+                if(fields.Length != expectedFieldCount)
+                {
+                    throw new InvalidDataException("Invalid record in file.");
+                }
 
-            RoomsByName["Rocky Trail"].Description = "You are on a rock-strewn trail";
-            RoomsByName["South of House"].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred.";
-            RoomsByName["Canyon View"].Description = "You are at the top of the Great Canyon on its south wall.";
+                string name = fields[(int)Fields.Name];
+                string description = fields[(int)Fields.Description];
 
-            RoomsByName["Forest"].Description = "This is a forest, with trees in all directions around you";
-            RoomsByName["West of House"].Description = "This is an open field west of a white house, with a boarded front door.";
-            RoomsByName["Behind House"].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar.";
+                RoomMap[name].Description = description;
+            }    
 
-            RoomsByName["Dense Woods"].Description = "This is a dimly lit forest, with large trees all around. To the east, there appears to be sunlight.";
-            RoomsByName["North of House"].Description = "You are facing the north side of a white house. There is no door here, and all the windows are barred.";
-            RoomsByName["Clearing"].Description = "You are in a clearing, with a forest surrounding you on the west and south.";
+        }
+
+        private enum Fields
+        {
+            Name = 0,
+            Description = 1
         }
     }
 }
