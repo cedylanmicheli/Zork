@@ -66,8 +66,8 @@
 				"Name": "Clearing",
 				"Description": "You are in a clearing, with a forest surrounding you on the west and south.",
 				"Neighbors":{
-					"South": "Forest 2",
-					"west": "Forest 3",
+					"South": "Forest 3",
+					"West": "Forest 2",
 				}
 			},
 		]

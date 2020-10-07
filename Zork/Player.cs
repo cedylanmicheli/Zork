@@ -14,7 +14,7 @@ namespace Zork
         [JsonIgnore]
         public string LocationName
         {
-            get { return Location?.Name; } //same as writing return (Location != null ? Location.Name : null);
+            get { return Location?.Name; } 
             set { Location = World?.RoomsByName.GetValueOrDefault(value); }
         }
 
