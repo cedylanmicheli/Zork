@@ -1,13 +1,17 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Zork
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public World World { get; private set; }
 
         public string StartingLocation { get; set; }
@@ -19,7 +23,6 @@ namespace Zork
 
         [JsonIgnore]
         private bool isRunning { get; set; }
-
 
         private Dictionary<string, Command> Commands { get; set; }
 

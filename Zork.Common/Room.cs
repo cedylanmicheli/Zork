@@ -1,12 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Zork
 {
-    public class Room : IEquatable<Room>
+    public class Room : IEquatable<Room>, INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [JsonProperty(Order = 1)]
         public string Name { get; set; }
 
@@ -18,6 +22,11 @@ namespace Zork
 
         [JsonIgnore]
         public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
+
+        public Room(string name = null)
+        {
+            Name = name;
+        }
 
         public static bool operator ==(Room lhs, Room rhs)
         {
@@ -38,11 +47,15 @@ namespace Zork
 
         public override int GetHashCode() => Name.GetHashCode();
 
-        public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
-                                                                 let room = world.RoomsByName.GetValueOrDefault(entry.Value)
-                                                                 where room != null
-                                                                 select (Direction: entry.Key, Room: room)).ToDictionary(pair => pair.Direction, pair => pair.Room);
-                                                                 
+        public void UpdateNeighbors(World world)
+        {
+            var neighbors = new Dictionary<Directions, Room>();
 
+            foreach (var entry in NeighborNames)
+            {
+                neighbors.Add(entry.Key, world.RoomsByName[entry.Value]);
+            }
+            Neighbors = neighbors;
+        }
     }
 }

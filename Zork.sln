@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork", "Zork\Zork.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3481D7F1-7B72-4F6E-8D06-45B1D9B0FC7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork.Builder", "Zork.Builder\Zork.Builder.csproj", "{7BD11F2F-2868-4D05-A794-6DF039F26776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork.Common", "Zork.Common\Zork.Common.csproj", "{4C894455-A61C-4959-B829-8372A20AFA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{21A44C45-0646-4BB3-9A10-7EE183B32308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A44C45-0646-4BB3-9A10-7EE183B32308}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A44C45-0646-4BB3-9A10-7EE183B32308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD11F2F-2868-4D05-A794-6DF039F26776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD11F2F-2868-4D05-A794-6DF039F26776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD11F2F-2868-4D05-A794-6DF039F26776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD11F2F-2868-4D05-A794-6DF039F26776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C894455-A61C-4959-B829-8372A20AFA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C894455-A61C-4959-B829-8372A20AFA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C894455-A61C-4959-B829-8372A20AFA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C894455-A61C-4959-B829-8372A20AFA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
