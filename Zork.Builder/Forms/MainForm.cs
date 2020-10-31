@@ -14,54 +14,22 @@ namespace Zork.Builder
 
         private GameViewModel _viewModel;
 
-
         public MainForm()
         {
             InitializeComponent();
             UpdateTitle();
             CreateGame();
-            _viewModel = new GameViewModel(new Game(new World(), null));
+            
+          
             gameViewModelBindingSource.DataSource = _viewModel;
             worldView.ViewModel = _viewModel;
             settingsView.ViewModel = _viewModel;
             gameView.ViewModel = _viewModel;
         }
 
-        private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(GameFileName))
-            {
-                saveAsToolStripMenuItem.PerformClick();
-            }
-            else SaveGame();
-       
-        }
-
-        private void SaveAsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                GameFileName = saveFileDialog.FileName;
-                UpdateTitle();
-                SaveGame();
-            }
-        }
-
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateGame();
-        }
-
-        private void SaveGame()
-        {
-            JsonSerializer jsonSerializer = new JsonSerializer() { Formatting = Formatting.Indented };
-
-            using (StreamWriter streamWriter = new StreamWriter(GameFileName))
-            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
-            {
-                jsonSerializer.Serialize(jsonWriter, Game);
-
-            }
         }
 
         private void UpdateTitle()
@@ -74,6 +42,7 @@ namespace Zork.Builder
         {
             GameFileName = null;
             Game = new Game(new World(), null);
+            _viewModel = new GameViewModel(Game);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,6 +51,37 @@ namespace Zork.Builder
             {
                 _viewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
                 _viewModel.FullPath = openFileDialog.FileName;
+            }
+        }
+
+        private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(GameFileName))
+            {
+                saveAsToolStripMenuItem.PerformClick();
+            }
+            else SaveGame();
+        }
+
+        private void SaveAsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                GameFileName = saveFileDialog.FileName;
+                UpdateTitle();
+                SaveGame();
+            }
+        }
+
+        private void SaveGame()
+        {
+            JsonSerializer jsonSerializer = new JsonSerializer() { Formatting = Formatting.Indented };
+
+            using (StreamWriter streamWriter = new StreamWriter(GameFileName))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                jsonSerializer.Serialize(jsonWriter, _viewModel.Game);
+
             }
         }
     }

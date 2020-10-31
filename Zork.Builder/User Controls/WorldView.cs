@@ -34,7 +34,7 @@ namespace Zork.Builder
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
                     Room room = new Room(addRoomForm.RoomName);
-                    ViewModel.Rooms.Add(room);
+                    mViewModel.Rooms.Add(room);
                 }
             }
         }
