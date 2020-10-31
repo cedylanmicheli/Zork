@@ -14,11 +14,12 @@ namespace Zork.Builder
 
         private GameViewModel _viewModel;
 
+
         public MainForm()
         {
             InitializeComponent();
             UpdateTitle();
-            // CreateGame();
+            CreateGame();
             _viewModel = new GameViewModel(new Game(new World(), null));
             gameViewModelBindingSource.DataSource = _viewModel;
             worldView.ViewModel = _viewModel;

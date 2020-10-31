@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.roomsLabel = new System.Windows.Forms.Label();
             this.roomListBox = new System.Windows.Forms.ListBox();
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
@@ -47,10 +48,9 @@
             this.westNeighborDropDown = new System.Windows.Forms.ComboBox();
             this.eastNeighborDropDown = new System.Windows.Forms.ComboBox();
             this.northLabel = new System.Windows.Forms.Label();
-            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // roomsLabel
@@ -73,6 +73,11 @@
             this.roomListBox.Name = "roomListBox";
             this.roomListBox.Size = new System.Drawing.Size(192, 404);
             this.roomListBox.TabIndex = 1;
+            // 
+            // roomsBindingSource
+            // 
+            this.roomsBindingSource.DataMember = "Rooms";
+            this.roomsBindingSource.DataSource = this.gameViewModelBindingSource;
             // 
             // gameViewModelBindingSource
             // 
@@ -119,6 +124,7 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Description", true));
             this.descriptionTextBox.Location = new System.Drawing.Point(239, 163);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(533, 84);
@@ -136,6 +142,7 @@
             // 
             // roomNameTextBox
             // 
+            this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
             this.roomNameTextBox.Location = new System.Drawing.Point(241, 94);
             this.roomNameTextBox.Name = "roomNameTextBox";
             this.roomNameTextBox.Size = new System.Drawing.Size(228, 26);
@@ -224,11 +231,6 @@
             this.northLabel.TabIndex = 17;
             this.northLabel.Text = "North";
             // 
-            // roomsBindingSource
-            // 
-            this.roomsBindingSource.DataMember = "Rooms";
-            this.roomsBindingSource.DataSource = this.gameViewModelBindingSource;
-            // 
             // WorldView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -244,10 +246,10 @@
             this.Controls.Add(this.roomsLabel);
             this.Name = "WorldView";
             this.Size = new System.Drawing.Size(819, 543);
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

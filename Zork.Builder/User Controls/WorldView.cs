@@ -7,8 +7,21 @@ namespace Zork.Builder
 {
     public partial class WorldView : UserControl
     {
-        public GameViewModel ViewModel { get; set; }
+        private GameViewModel mViewModel;
 
+        public GameViewModel ViewModel
+        {
+
+            get => mViewModel;
+            set
+            {
+                if(mViewModel != value)
+                {
+                    mViewModel = value;
+                    gameViewModelBindingSource.DataSource = mViewModel;
+                }
+            }
+        }
         public WorldView()
         {
             InitializeComponent();
