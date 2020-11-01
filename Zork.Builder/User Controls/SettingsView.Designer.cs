@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.startingDropdown = new System.Windows.Forms.ComboBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
@@ -36,6 +37,10 @@
             this.exitTextBox = new System.Windows.Forms.TextBox();
             this.filenameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.worldBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.worldBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // startingDropdown
@@ -83,26 +88,25 @@
             // 
             // welcomeTextBox
             // 
-            this.welcomeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.welcomeTextBox.Location = new System.Drawing.Point(23, 134);
             this.welcomeTextBox.Multiline = true;
             this.welcomeTextBox.Name = "welcomeTextBox";
             this.welcomeTextBox.Size = new System.Drawing.Size(655, 90);
             this.welcomeTextBox.TabIndex = 30;
+            this.welcomeTextBox.TextChanged += new System.EventHandler(this.WelcomeTextBox_TextChanged);
             // 
             // exitTextBox
             // 
-            this.exitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.exitTextBox.Location = new System.Drawing.Point(23, 268);
             this.exitTextBox.Multiline = true;
             this.exitTextBox.Name = "exitTextBox";
             this.exitTextBox.Size = new System.Drawing.Size(653, 90);
             this.exitTextBox.TabIndex = 31;
+            this.exitTextBox.TextChanged += new System.EventHandler(this.ExitTextBox_TextChanged);
             // 
             // filenameTextBox
             // 
+            this.filenameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.gameViewModelBindingSource, "FullPath", true));
             this.filenameTextBox.Location = new System.Drawing.Point(23, 55);
             this.filenameTextBox.Name = "filenameTextBox";
             this.filenameTextBox.ReadOnly = true;
@@ -118,6 +122,15 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "File Name";
             // 
+            // worldBindingSource
+            // 
+            this.worldBindingSource.DataMember = "Rooms";
+            this.worldBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
+            // 
+            // gameViewModelBindingSource
+            // 
+            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
+            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -132,6 +145,8 @@
             this.Controls.Add(this.startingLabel);
             this.Name = "SettingsView";
             this.Size = new System.Drawing.Size(712, 450);
+            ((System.ComponentModel.ISupportInitialize)(this.worldBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +161,7 @@
         private System.Windows.Forms.TextBox exitTextBox;
         private System.Windows.Forms.TextBox filenameTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource worldBindingSource;
+        private System.Windows.Forms.BindingSource gameViewModelBindingSource;
     }
 }

@@ -55,7 +55,7 @@ namespace Zork.Builder
             gameView.ViewModel = _viewModel;
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
