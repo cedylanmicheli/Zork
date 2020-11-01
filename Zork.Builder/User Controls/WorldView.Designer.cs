@@ -73,6 +73,7 @@
             this.roomListBox.Name = "roomListBox";
             this.roomListBox.Size = new System.Drawing.Size(192, 404);
             this.roomListBox.TabIndex = 1;
+            this.roomListBox.SelectedIndexChanged += new System.EventHandler(this.RoomListBox_SelectedIndexChanged);
             // 
             // roomsBindingSource
             // 
@@ -91,16 +92,18 @@
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add...";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // deleteButton
             // 
+            this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(124, 487);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(90, 29);
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // roomNameLabel
             // 

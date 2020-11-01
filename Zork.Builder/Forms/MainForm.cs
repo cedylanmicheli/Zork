@@ -11,25 +11,30 @@ namespace Zork.Builder
         private Game Game { get; set; }
 
         private string GameFileName { get; set; }
+        private bool IsGameLoaded
+        {
+            get => _IsGameLoaded;
+            set
+            {
+                _IsGameLoaded = value;
+                tabControl.Enabled = IsGameLoaded;
+            }
+        }
 
         private GameViewModel _viewModel;
+        private bool _IsGameLoaded;
 
         public MainForm()
         {
             InitializeComponent();
             UpdateTitle();
-            CreateGame();
-            
-          
-            gameViewModelBindingSource.DataSource = _viewModel;
-            worldView.ViewModel = _viewModel;
-            settingsView.ViewModel = _viewModel;
-            gameView.ViewModel = _viewModel;
+            IsGameLoaded = false;
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateGame();
+            IsGameLoaded = true;
         }
 
         private void UpdateTitle()
@@ -43,6 +48,11 @@ namespace Zork.Builder
             GameFileName = null;
             Game = new Game(new World(), null);
             _viewModel = new GameViewModel(Game);
+
+            gameViewModelBindingSource.DataSource = _viewModel;
+            worldView.ViewModel = _viewModel;
+            settingsView.ViewModel = _viewModel;
+            gameView.ViewModel = _viewModel;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
