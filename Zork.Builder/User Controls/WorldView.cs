@@ -37,13 +37,13 @@ namespace Zork.Builder
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
 
-                    var neighbors = new Dictionary<Directions, Room>();
-                    Room room = new Room(addRoomForm.RoomName);
                     
+                    Room room = new Room(addRoomForm.RoomName);
 
-                  // neighbors.Add(Zork.Directions.North, room);
-                  // room.Neighbors = neighbors;
-                  // mViewModel.Rooms.Add(room);
+                    // var neighbors = new Dictionary<Directions, Room>();
+                    // neighbors.Add(Zork.Directions.North, room);
+                    // room.Neighbors = neighbors;
+                    mViewModel.Rooms.Add(room);
 
                 }
             }
