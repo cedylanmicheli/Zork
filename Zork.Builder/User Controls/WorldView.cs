@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Zork.Builder.Forms;
 using Zork.Builder.ViewModels;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Zork.Builder
 {
@@ -34,8 +36,15 @@ namespace Zork.Builder
             {
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
+
+                    var neighbors = new Dictionary<Directions, Room>();
                     Room room = new Room(addRoomForm.RoomName);
-                    mViewModel.Rooms.Add(room);
+                    
+
+                  // neighbors.Add(Zork.Directions.North, room);
+                  // room.Neighbors = neighbors;
+                  // mViewModel.Rooms.Add(room);
+
                 }
             }
         }

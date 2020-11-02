@@ -30,8 +30,6 @@ namespace Zork.Builder.ViewModels
         }
 
         public BindingList<Room> Rooms { get; set; }
-        public BindingList<Room> Neighbors { get; set; }
-
         public string FullPath { get; set; }
         public string WelcomeMessage { get; set; }
         public string GoodbyeMessage { get; set; }

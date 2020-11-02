@@ -21,7 +21,7 @@ namespace Zork
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
         [JsonIgnore]
-        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
+        public IReadOnlyDictionary<Directions, Room> Neighbors { get; set; }
 
         public Room(string name = null)
         {

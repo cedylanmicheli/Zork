@@ -62,7 +62,6 @@ namespace Zork.Builder
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
                 jsonSerializer.Serialize(jsonWriter, mViewModel.Game);
-
             }
         }
         #endregion Saving Game
@@ -93,15 +92,8 @@ namespace Zork.Builder
 
         private void UpdateTitle()
         {
-           // string gameFilename = "Untitled";
-           // if(string.IsNullOrEmpty(GameFileName) == false)
-           // {
-           //    gameFilename = Path.GetFileNameWithoutExtension(GameFileName);
-           //     mViewModel.FullPath = GameFileName;
-           // }
             string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
             Text = $"Zork Builder - {gameFilename}";
-            
         }
 
         private void CreateGame()
