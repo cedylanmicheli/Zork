@@ -66,7 +66,6 @@
             // roomListBox
             // 
             this.roomListBox.DataSource = this.roomsBindingSource;
-            this.roomListBox.DisplayMember = "Name";
             this.roomListBox.FormattingEnabled = true;
             this.roomListBox.ItemHeight = 20;
             this.roomListBox.Location = new System.Drawing.Point(22, 72);
@@ -127,12 +126,12 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Description", true));
+            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.descriptionTextBox.Location = new System.Drawing.Point(239, 163);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(533, 84);
             this.descriptionTextBox.TabIndex = 20;
-            this.descriptionTextBox.Text = "Edit Room Description";
+            this.descriptionTextBox.Text = "";
             // 
             // northNeighborDropDown
             // 
@@ -141,16 +140,14 @@
             this.northNeighborDropDown.Name = "northNeighborDropDown";
             this.northNeighborDropDown.Size = new System.Drawing.Size(228, 28);
             this.northNeighborDropDown.TabIndex = 16;
-            this.northNeighborDropDown.Text = "None";
             // 
             // roomNameTextBox
             // 
-            this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
+            this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.roomNameTextBox.Location = new System.Drawing.Point(241, 94);
             this.roomNameTextBox.Name = "roomNameTextBox";
             this.roomNameTextBox.Size = new System.Drawing.Size(228, 26);
             this.roomNameTextBox.TabIndex = 15;
-            this.roomNameTextBox.Text = "Edit Selected Room Name";
             // 
             // panel1
             // 
@@ -184,7 +181,6 @@
             this.southNeighborDropDown.Name = "southNeighborDropDown";
             this.southNeighborDropDown.Size = new System.Drawing.Size(228, 28);
             this.southNeighborDropDown.TabIndex = 22;
-            this.southNeighborDropDown.Text = "None";
             // 
             // eastLabel
             // 
@@ -213,7 +209,6 @@
             this.westNeighborDropDown.Name = "westNeighborDropDown";
             this.westNeighborDropDown.Size = new System.Drawing.Size(228, 28);
             this.westNeighborDropDown.TabIndex = 18;
-            this.westNeighborDropDown.Text = "None";
             // 
             // eastNeighborDropDown
             // 
@@ -222,7 +217,6 @@
             this.eastNeighborDropDown.Name = "eastNeighborDropDown";
             this.eastNeighborDropDown.Size = new System.Drawing.Size(228, 28);
             this.eastNeighborDropDown.TabIndex = 20;
-            this.eastNeighborDropDown.Text = "None";
             // 
             // northLabel
             // 

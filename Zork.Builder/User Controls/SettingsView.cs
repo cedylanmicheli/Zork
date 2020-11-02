@@ -14,7 +14,7 @@ namespace Zork.Builder.User_Controls
                 if (mViewModel != value)
                 {
                     mViewModel = value;
-                    worldBindingSource.DataSource = mViewModel;
+                    gameViewModelBindingSource.DataSource = mViewModel;
                 }
             }
         }

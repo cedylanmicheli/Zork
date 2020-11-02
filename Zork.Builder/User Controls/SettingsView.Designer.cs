@@ -37,9 +37,7 @@
             this.exitTextBox = new System.Windows.Forms.TextBox();
             this.filenameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.worldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.worldBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +86,7 @@
             // 
             // welcomeTextBox
             // 
+            this.welcomeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.gameViewModelBindingSource, "WelcomeMessage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.welcomeTextBox.Location = new System.Drawing.Point(23, 134);
             this.welcomeTextBox.Multiline = true;
             this.welcomeTextBox.Name = "welcomeTextBox";
@@ -97,6 +96,7 @@
             // 
             // exitTextBox
             // 
+            this.exitTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.gameViewModelBindingSource, "GoodbyeMessage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.exitTextBox.Location = new System.Drawing.Point(23, 268);
             this.exitTextBox.Multiline = true;
             this.exitTextBox.Name = "exitTextBox";
@@ -122,11 +122,6 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "File Name";
             // 
-            // worldBindingSource
-            // 
-            this.worldBindingSource.DataMember = "Rooms";
-            this.worldBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
-            // 
             // gameViewModelBindingSource
             // 
             this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
@@ -145,7 +140,6 @@
             this.Controls.Add(this.startingLabel);
             this.Name = "SettingsView";
             this.Size = new System.Drawing.Size(712, 450);
-            ((System.ComponentModel.ISupportInitialize)(this.worldBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,11 +151,10 @@
         private System.Windows.Forms.Label exitLabel;
         private System.Windows.Forms.Label welcomeLabel;
         private System.Windows.Forms.Label startingLabel;
-        private System.Windows.Forms.TextBox welcomeTextBox;
         private System.Windows.Forms.TextBox exitTextBox;
         private System.Windows.Forms.TextBox filenameTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource worldBindingSource;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
+        public System.Windows.Forms.TextBox welcomeTextBox;
     }
 }

@@ -75,8 +75,12 @@ namespace Zork.Builder
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                _viewModel = new GameViewModel(Game);
                 _viewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
                 _viewModel.FullPath = openFileDialog.FileName;
+                
+                BindFields();
+                EnableMenus();
             }
         }
 
@@ -98,14 +102,22 @@ namespace Zork.Builder
             Game = new Game(new World(), null);
             _viewModel = new GameViewModel(Game);
 
-            gameViewModelBindingSource.DataSource = _viewModel;
-            worldView.ViewModel = _viewModel;
-            settingsView.ViewModel = _viewModel;
-            gameView.ViewModel = _viewModel;
+            BindFields();
+            EnableMenus();
+        }
 
+        private void EnableMenus()
+        {
             IsGameLoaded = true;
             saveAsToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
+        }
+
+        private void BindFields()
+        {
+            gameViewModelBindingSource.DataSource = _viewModel;
+            worldView.ViewModel = _viewModel;
+            settingsView.ViewModel = _viewModel;
         }
     }
 }

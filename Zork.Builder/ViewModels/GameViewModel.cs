@@ -18,6 +18,8 @@ namespace Zork.Builder.ViewModels
                     if(_game != null)
                     {
                         Rooms = new BindingList<Room>(_game.World.Rooms);
+                        WelcomeMessage = _game.WelcomeMessage;
+                        GoodbyeMessage = _game.GoodbyeMessage;
                     }
                     else
                     {
@@ -28,8 +30,11 @@ namespace Zork.Builder.ViewModels
         }
 
         public BindingList<Room> Rooms { get; set; }
+        public BindingList<Room> Neighbors { get; set; }
 
         public string FullPath { get; set; }
+        public string WelcomeMessage { get; set; }
+        public string GoodbyeMessage { get; set; }
 
         public GameViewModel(Game game = null)
         {
