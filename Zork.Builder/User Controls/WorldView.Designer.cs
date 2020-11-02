@@ -127,6 +127,7 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.descriptionTextBox.Enabled = false;
             this.descriptionTextBox.Location = new System.Drawing.Point(239, 163);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(533, 84);
@@ -144,6 +145,7 @@
             // roomNameTextBox
             // 
             this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.roomNameTextBox.Enabled = false;
             this.roomNameTextBox.Location = new System.Drawing.Point(241, 94);
             this.roomNameTextBox.Name = "roomNameTextBox";
             this.roomNameTextBox.Size = new System.Drawing.Size(228, 26);

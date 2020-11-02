@@ -43,6 +43,8 @@ namespace Zork.Builder
         private void RoomListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             deleteButton.Enabled = roomListBox.SelectedItem != null;
+            roomNameTextBox.Enabled = roomListBox.SelectedItem != null;
+            descriptionTextBox.Enabled = roomListBox.SelectedItem != null;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)

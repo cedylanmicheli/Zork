@@ -21,7 +21,7 @@ namespace Zork.Builder
             }
         }
 
-        private GameViewModel _viewModel;
+        private GameViewModel mViewModel;
         private bool _IsGameLoaded;
 
         public MainForm()
@@ -48,6 +48,7 @@ namespace Zork.Builder
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 GameFileName = saveFileDialog.FileName;
+                mViewModel.FullPath = GameFileName;
                 UpdateTitle();
                 SaveGame();
             }
@@ -60,7 +61,7 @@ namespace Zork.Builder
             using (StreamWriter streamWriter = new StreamWriter(GameFileName))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
-                jsonSerializer.Serialize(jsonWriter, _viewModel.Game);
+                jsonSerializer.Serialize(jsonWriter, mViewModel.Game);
 
             }
         }
@@ -75,9 +76,9 @@ namespace Zork.Builder
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _viewModel = new GameViewModel(Game);
-                _viewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
-                _viewModel.FullPath = openFileDialog.FileName;
+                mViewModel = new GameViewModel(Game);
+                mViewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
+                mViewModel.FullPath = openFileDialog.FileName;
                 
                 BindFields();
                 EnableMenus();
@@ -92,15 +93,22 @@ namespace Zork.Builder
 
         private void UpdateTitle()
         {
+           // string gameFilename = "Untitled";
+           // if(string.IsNullOrEmpty(GameFileName) == false)
+           // {
+           //    gameFilename = Path.GetFileNameWithoutExtension(GameFileName);
+           //     mViewModel.FullPath = GameFileName;
+           // }
             string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
             Text = $"Zork Builder - {gameFilename}";
+            
         }
 
         private void CreateGame()
         {
             GameFileName = null;
             Game = new Game(new World(), null);
-            _viewModel = new GameViewModel(Game);
+            mViewModel = new GameViewModel(Game);
 
             BindFields();
             EnableMenus();
@@ -115,9 +123,9 @@ namespace Zork.Builder
 
         private void BindFields()
         {
-            gameViewModelBindingSource.DataSource = _viewModel;
-            worldView.ViewModel = _viewModel;
-            settingsView.ViewModel = _viewModel;
+            gameViewModelBindingSource.DataSource = mViewModel;
+            worldView.ViewModel = mViewModel;
+            settingsView.ViewModel = mViewModel;
         }
     }
 }
