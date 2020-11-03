@@ -13,7 +13,7 @@ namespace Zork
         public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
-        public IReadOnlyDictionary<string, Room> RoomsByName => mRoomsByName;
+        public Dictionary<string, Room> RoomsByName => mRoomsByName;
 
         public World()
         {

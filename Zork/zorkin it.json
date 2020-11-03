@@ -1,0 +1,14 @@
+{
+  "World": {
+    "Rooms": [
+      {
+        "Name": "Zorking it up!",
+        "Description": null,
+        "Neighbors": {}
+      }
+    ]
+  },
+  "StartingLocation": null,
+  "WelcomeMessage": null,
+  "GoodbyeMessage": null
+}

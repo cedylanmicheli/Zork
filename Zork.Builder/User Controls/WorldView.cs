@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Zork.Builder.Forms;
 using Zork.Builder.ViewModels;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Zork.Builder
 {
@@ -36,15 +35,13 @@ namespace Zork.Builder
             {
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
-
-                    
                     Room room = new Room(addRoomForm.RoomName);
-
-                    // var neighbors = new Dictionary<Directions, Room>();
-                    // neighbors.Add(Zork.Directions.North, room);
-                    // room.Neighbors = neighbors;
-                    mViewModel.Rooms.Add(room);
-
+                    mViewModel.Rooms.Add(room);   
+                    mViewModel.Game.World.RoomsByName.Add(addRoomForm.RoomName, room);
+                   
+                    var neighbors = new Dictionary<Directions, string>();
+                    room.NeighborNames = neighbors;
+                    room.UpdateNeighbors(mViewModel.Game.World);
                 }
             }
         }
