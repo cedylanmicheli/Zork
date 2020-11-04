@@ -9,17 +9,15 @@ namespace Zork.Builder.ViewModels
 
         public Game Game
         {
-            get => _game;
+            get => mGame;
             set
             {
-                if(_game != value)
+                if(mGame != value)
                 {
-                    _game = value;
-                    if(_game != null)
+                    mGame = value;
+                    if(mGame != null)
                     {
-                        Rooms = new BindingList<Room>(_game.World.Rooms);
-                        WelcomeMessage = _game.WelcomeMessage;
-                        GoodbyeMessage = _game.GoodbyeMessage;
+                        Rooms = new BindingList<Room>(mGame.World.Rooms);
                     }
                     else
                     {
@@ -31,14 +29,22 @@ namespace Zork.Builder.ViewModels
 
         public BindingList<Room> Rooms { get; set; }
         public string FullPath { get; set; }
-        public string WelcomeMessage { get; set; }
-        public string GoodbyeMessage { get; set; }
+       
+        public string WelcomeMessage {
+            get => mGame.WelcomeMessage;
+            set => mGame.WelcomeMessage = value; 
+        }
+        
+        public string GoodbyeMessage { 
+            get => mGame.GoodbyeMessage; 
+            set => mGame.GoodbyeMessage = value; 
+        }
 
         public GameViewModel(Game game = null)
         {
             Game = game;
         }
 
-        private Game _game;
+        private Game mGame;
     }
 }

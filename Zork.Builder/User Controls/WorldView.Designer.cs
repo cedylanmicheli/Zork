@@ -38,16 +38,9 @@
             this.roomNameLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
-            this.northNeighborDropDown = new System.Windows.Forms.ComboBox();
             this.roomNameTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.southLabel = new System.Windows.Forms.Label();
-            this.southNeighborDropDown = new System.Windows.Forms.ComboBox();
-            this.eastLabel = new System.Windows.Forms.Label();
-            this.westLabel = new System.Windows.Forms.Label();
-            this.westNeighborDropDown = new System.Windows.Forms.ComboBox();
-            this.eastNeighborDropDown = new System.Windows.Forms.ComboBox();
-            this.northLabel = new System.Windows.Forms.Label();
+            this.neighborsView1 = new Zork.Builder.User_Controls.NeighborsView();
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -134,14 +127,6 @@
             this.descriptionTextBox.TabIndex = 20;
             this.descriptionTextBox.Text = "";
             // 
-            // northNeighborDropDown
-            // 
-            this.northNeighborDropDown.FormattingEnabled = true;
-            this.northNeighborDropDown.Location = new System.Drawing.Point(158, 45);
-            this.northNeighborDropDown.Name = "northNeighborDropDown";
-            this.northNeighborDropDown.Size = new System.Drawing.Size(228, 28);
-            this.northNeighborDropDown.TabIndex = 16;
-            // 
             // roomNameTextBox
             // 
             this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -153,82 +138,21 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.southLabel);
-            this.panel1.Controls.Add(this.southNeighborDropDown);
-            this.panel1.Controls.Add(this.eastLabel);
-            this.panel1.Controls.Add(this.westLabel);
-            this.panel1.Controls.Add(this.westNeighborDropDown);
-            this.panel1.Controls.Add(this.eastNeighborDropDown);
-            this.panel1.Controls.Add(this.northLabel);
-            this.panel1.Controls.Add(this.northNeighborDropDown);
+            this.panel1.Controls.Add(this.neighborsView1);
             this.panel1.Location = new System.Drawing.Point(241, 264);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(543, 252);
             this.panel1.TabIndex = 24;
             // 
-            // southLabel
+            // neighborsView1
             // 
-            this.southLabel.AutoSize = true;
-            this.southLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.southLabel.Location = new System.Drawing.Point(244, 211);
-            this.southLabel.Name = "southLabel";
-            this.southLabel.Size = new System.Drawing.Size(57, 20);
-            this.southLabel.TabIndex = 23;
-            this.southLabel.Text = "South";
-            // 
-            // southNeighborDropDown
-            // 
-            this.southNeighborDropDown.FormattingEnabled = true;
-            this.southNeighborDropDown.Location = new System.Drawing.Point(158, 180);
-            this.southNeighborDropDown.Name = "southNeighborDropDown";
-            this.southNeighborDropDown.Size = new System.Drawing.Size(228, 28);
-            this.southNeighborDropDown.TabIndex = 22;
-            // 
-            // eastLabel
-            // 
-            this.eastLabel.AutoSize = true;
-            this.eastLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eastLabel.Location = new System.Drawing.Point(396, 93);
-            this.eastLabel.Name = "eastLabel";
-            this.eastLabel.Size = new System.Drawing.Size(46, 20);
-            this.eastLabel.TabIndex = 21;
-            this.eastLabel.Text = "East";
-            // 
-            // westLabel
-            // 
-            this.westLabel.AutoSize = true;
-            this.westLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.westLabel.Location = new System.Drawing.Point(84, 93);
-            this.westLabel.Name = "westLabel";
-            this.westLabel.Size = new System.Drawing.Size(50, 20);
-            this.westLabel.TabIndex = 19;
-            this.westLabel.Text = "West";
-            // 
-            // westNeighborDropDown
-            // 
-            this.westNeighborDropDown.FormattingEnabled = true;
-            this.westNeighborDropDown.Location = new System.Drawing.Point(6, 116);
-            this.westNeighborDropDown.Name = "westNeighborDropDown";
-            this.westNeighborDropDown.Size = new System.Drawing.Size(228, 28);
-            this.westNeighborDropDown.TabIndex = 18;
-            // 
-            // eastNeighborDropDown
-            // 
-            this.eastNeighborDropDown.FormattingEnabled = true;
-            this.eastNeighborDropDown.Location = new System.Drawing.Point(303, 116);
-            this.eastNeighborDropDown.Name = "eastNeighborDropDown";
-            this.eastNeighborDropDown.Size = new System.Drawing.Size(228, 28);
-            this.eastNeighborDropDown.TabIndex = 20;
-            // 
-            // northLabel
-            // 
-            this.northLabel.AutoSize = true;
-            this.northLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.northLabel.Location = new System.Drawing.Point(244, 22);
-            this.northLabel.Name = "northLabel";
-            this.northLabel.Size = new System.Drawing.Size(53, 20);
-            this.northLabel.TabIndex = 17;
-            this.northLabel.Text = "North";
+            this.neighborsView1.Direction = Zork.Directions.North;
+            this.neighborsView1.Location = new System.Drawing.Point(150, 108);
+            this.neighborsView1.Name = "neighborsView1";
+            this.neighborsView1.Room = null;
+            this.neighborsView1.Size = new System.Drawing.Size(187, 88);
+            this.neighborsView1.TabIndex = 0;
+            this.neighborsView1.ViewModel = null;
             // 
             // WorldView
             // 
@@ -248,7 +172,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,17 +186,10 @@
         private System.Windows.Forms.Label roomNameLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.RichTextBox descriptionTextBox;
-        private System.Windows.Forms.ComboBox northNeighborDropDown;
         private System.Windows.Forms.TextBox roomNameTextBox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label westLabel;
-        private System.Windows.Forms.ComboBox westNeighborDropDown;
-        private System.Windows.Forms.Label northLabel;
-        private System.Windows.Forms.Label eastLabel;
-        private System.Windows.Forms.ComboBox eastNeighborDropDown;
-        private System.Windows.Forms.Label southLabel;
-        private System.Windows.Forms.ComboBox southNeighborDropDown;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         private System.Windows.Forms.BindingSource roomsBindingSource;
+        private User_Controls.NeighborsView neighborsView1;
     }
 }
