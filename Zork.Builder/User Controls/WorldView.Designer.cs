@@ -39,8 +39,11 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.roomNameTextBox = new System.Windows.Forms.TextBox();
+            this.neighborsViewNorth = new Zork.Builder.User_Controls.NeighborsView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.neighborsView1 = new Zork.Builder.User_Controls.NeighborsView();
+            this.neighborsViewEast = new Zork.Builder.User_Controls.NeighborsView();
+            this.neighborsViewSouth = new Zork.Builder.User_Controls.NeighborsView();
+            this.neighborsViewWest = new Zork.Builder.User_Controls.NeighborsView();
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -123,7 +126,7 @@
             this.descriptionTextBox.Enabled = false;
             this.descriptionTextBox.Location = new System.Drawing.Point(239, 163);
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(533, 84);
+            this.descriptionTextBox.Size = new System.Drawing.Size(577, 84);
             this.descriptionTextBox.TabIndex = 20;
             this.descriptionTextBox.Text = "";
             // 
@@ -136,23 +139,56 @@
             this.roomNameTextBox.Size = new System.Drawing.Size(228, 26);
             this.roomNameTextBox.TabIndex = 15;
             // 
+            // neighborsViewNorth
+            // 
+            this.neighborsViewNorth.Direction = Zork.Directions.North;
+            this.neighborsViewNorth.Location = new System.Drawing.Point(191, 3);
+            this.neighborsViewNorth.Name = "neighborsViewNorth";
+            this.neighborsViewNorth.Room = null;
+            this.neighborsViewNorth.Size = new System.Drawing.Size(187, 88);
+            this.neighborsViewNorth.TabIndex = 0;
+            this.neighborsViewNorth.ViewModel = null;
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.neighborsView1);
+            this.panel1.Controls.Add(this.neighborsViewEast);
+            this.panel1.Controls.Add(this.neighborsViewSouth);
+            this.panel1.Controls.Add(this.neighborsViewWest);
+            this.panel1.Controls.Add(this.neighborsViewNorth);
             this.panel1.Location = new System.Drawing.Point(241, 264);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(543, 252);
+            this.panel1.Size = new System.Drawing.Size(575, 252);
             this.panel1.TabIndex = 24;
             // 
-            // neighborsView1
+            // neighborsViewEast
             // 
-            this.neighborsView1.Direction = Zork.Directions.North;
-            this.neighborsView1.Location = new System.Drawing.Point(150, 108);
-            this.neighborsView1.Name = "neighborsView1";
-            this.neighborsView1.Room = null;
-            this.neighborsView1.Size = new System.Drawing.Size(187, 88);
-            this.neighborsView1.TabIndex = 0;
-            this.neighborsView1.ViewModel = null;
+            this.neighborsViewEast.Direction = Zork.Directions.East;
+            this.neighborsViewEast.Location = new System.Drawing.Point(384, 71);
+            this.neighborsViewEast.Name = "neighborsViewEast";
+            this.neighborsViewEast.Room = null;
+            this.neighborsViewEast.Size = new System.Drawing.Size(187, 88);
+            this.neighborsViewEast.TabIndex = 3;
+            this.neighborsViewEast.ViewModel = null;
+            // 
+            // neighborsViewSouth
+            // 
+            this.neighborsViewSouth.Direction = Zork.Directions.West;
+            this.neighborsViewSouth.Location = new System.Drawing.Point(3, 71);
+            this.neighborsViewSouth.Name = "neighborsViewSouth";
+            this.neighborsViewSouth.Room = null;
+            this.neighborsViewSouth.Size = new System.Drawing.Size(187, 88);
+            this.neighborsViewSouth.TabIndex = 2;
+            this.neighborsViewSouth.ViewModel = null;
+            // 
+            // neighborsViewWest
+            // 
+            this.neighborsViewWest.Direction = Zork.Directions.South;
+            this.neighborsViewWest.Location = new System.Drawing.Point(191, 141);
+            this.neighborsViewWest.Name = "neighborsViewWest";
+            this.neighborsViewWest.Room = null;
+            this.neighborsViewWest.Size = new System.Drawing.Size(187, 88);
+            this.neighborsViewWest.TabIndex = 1;
+            this.neighborsViewWest.ViewModel = null;
             // 
             // WorldView
             // 
@@ -168,7 +204,7 @@
             this.Controls.Add(this.roomListBox);
             this.Controls.Add(this.roomsLabel);
             this.Name = "WorldView";
-            this.Size = new System.Drawing.Size(819, 543);
+            this.Size = new System.Drawing.Size(832, 542);
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -187,9 +223,12 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.RichTextBox descriptionTextBox;
         private System.Windows.Forms.TextBox roomNameTextBox;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         private System.Windows.Forms.BindingSource roomsBindingSource;
-        private User_Controls.NeighborsView neighborsView1;
+        private User_Controls.NeighborsView neighborsViewNorth;
+        private System.Windows.Forms.Panel panel1;
+        private User_Controls.NeighborsView neighborsViewEast;
+        private User_Controls.NeighborsView neighborsViewSouth;
+        private User_Controls.NeighborsView neighborsViewWest;
     }
 }

@@ -4,11 +4,13 @@ using System.Windows.Forms;
 using Zork.Builder.Forms;
 using Zork.Builder.ViewModels;
 using System.Collections.Generic;
+using Zork.Builder.User_Controls;
 
 namespace Zork.Builder
 {
     public partial class WorldView : UserControl
     {
+
         private GameViewModel mViewModel;
 
         public GameViewModel ViewModel
@@ -21,14 +23,19 @@ namespace Zork.Builder
                 {
                     mViewModel = value;
                     gameViewModelBindingSource.DataSource = mViewModel;
-                   // neighborsView1.ViewModel = mViewModel;
+
+                    foreach (NeighborsView neighbor in mNeighborViews)
+                    {
+                        neighbor.ViewModel = mViewModel;
+                    }
                 }
             }
         }
+
         public WorldView()
         {
             InitializeComponent();
-            
+            mNeighborViews.AddRange(new NeighborsView[] { neighborsViewNorth, neighborsViewSouth, neighborsViewEast, neighborsViewWest });
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -58,6 +65,13 @@ namespace Zork.Builder
 
         private void RoomListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            foreach (var neighborView in mNeighborViews)
+            {
+               // neighborView.Room = (room)roomListBox.SelectedItem;
+            }
+
+
             deleteButton.Enabled = roomListBox.SelectedItem != null;
             roomNameTextBox.Enabled = roomListBox.SelectedItem != null;
             descriptionTextBox.Enabled = roomListBox.SelectedItem != null;
@@ -71,5 +85,8 @@ namespace Zork.Builder
                 roomListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
             }
         }
+
+        private readonly List<NeighborsView> mNeighborViews = new List<NeighborsView>();
     }
+
 }

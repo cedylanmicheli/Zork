@@ -28,6 +28,7 @@ namespace Zork.Builder
         {
             InitializeComponent();
             UpdateTitle();
+            BindFields();
             IsGameLoaded = false;
         }
 

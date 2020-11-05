@@ -53,6 +53,7 @@
             this.neighborComboBox.Name = "neighborComboBox";
             this.neighborComboBox.Size = new System.Drawing.Size(181, 28);
             this.neighborComboBox.TabIndex = 1;
+            this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.neighborComboBox_SelectedIndexChanged);
             // 
             // NeighborsView
             // 
