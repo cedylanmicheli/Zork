@@ -19,6 +19,7 @@ namespace Zork.Builder.User_Controls
             {
                 if (mViewModel != value)
                 {
+
                     mViewModel = value;
                 }
             }
@@ -98,7 +99,7 @@ namespace Zork.Builder.User_Controls
                 }
                 else
                 {
-                    mRoom.Neighbors[Direction] = neighbor;
+                    mRoom.NeighborNames[Direction] = neighbor.Name;
                 }
             }    
         }

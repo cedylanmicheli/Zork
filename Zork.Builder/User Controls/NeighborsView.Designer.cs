@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.directionTextBox = new System.Windows.Forms.TextBox();
             this.neighborComboBox = new System.Windows.Forms.ComboBox();
+            this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // directionTextBox
@@ -43,6 +46,7 @@
             // neighborComboBox
             // 
             this.neighborComboBox.AllowDrop = true;
+            this.neighborComboBox.DataSource = this.gameViewModelBindingSource;
             this.neighborComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.neighborComboBox.FormattingEnabled = true;
             this.neighborComboBox.Location = new System.Drawing.Point(3, 46);
@@ -50,6 +54,11 @@
             this.neighborComboBox.Size = new System.Drawing.Size(181, 28);
             this.neighborComboBox.TabIndex = 1;
             this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.NeighborComboBox_SelectedIndexChanged);
+            // 
+            // gameViewModelBindingSource
+            // 
+            this.gameViewModelBindingSource.DataMember = "Rooms";
+            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
             // 
             // NeighborsView
             // 
@@ -59,6 +68,7 @@
             this.Controls.Add(this.directionTextBox);
             this.Name = "NeighborsView";
             this.Size = new System.Drawing.Size(187, 88);
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,5 +78,6 @@
 
         private System.Windows.Forms.TextBox directionTextBox;
         private System.Windows.Forms.ComboBox neighborComboBox;
+        private System.Windows.Forms.BindingSource gameViewModelBindingSource;
     }
 }

@@ -31,6 +31,8 @@ namespace Zork.Builder
                     {
                         neighbor.ViewModel = mViewModel;
                         if (roomListBox.SelectedItem != null) neighbor.Room = roomListBox.SelectedItem as Room;
+
+                        //selectedRoom.Neighbors[neighbor.Direction] = neighbor.Neighbor;
                     }
                 }
             }
@@ -53,9 +55,9 @@ namespace Zork.Builder
                     {
                         mViewModel.Rooms.Add(room);
                         mViewModel.Game.World.RoomsByName.Add(addRoomForm.RoomName, room);
-
+                        
                         var neighbors = new Dictionary<Directions, string>();
-
+                        
                         room.NeighborNames = neighbors;
                         room.UpdateNeighbors(mViewModel.Game.World);
                     }
