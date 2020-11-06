@@ -40,13 +40,13 @@
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.roomNameTextBox = new System.Windows.Forms.TextBox();
             this.neighborsViewNorth = new Zork.Builder.User_Controls.NeighborsView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.nieghborsPanel = new System.Windows.Forms.Panel();
             this.neighborsViewEast = new Zork.Builder.User_Controls.NeighborsView();
             this.neighborsViewSouth = new Zork.Builder.User_Controls.NeighborsView();
             this.neighborsViewWest = new Zork.Builder.User_Controls.NeighborsView();
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.nieghborsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // roomsLabel
@@ -144,27 +144,29 @@
             this.neighborsViewNorth.Direction = Zork.Directions.North;
             this.neighborsViewNorth.Location = new System.Drawing.Point(191, 3);
             this.neighborsViewNorth.Name = "neighborsViewNorth";
+            this.neighborsViewNorth.Neighbor = null;
             this.neighborsViewNorth.Room = null;
             this.neighborsViewNorth.Size = new System.Drawing.Size(187, 88);
             this.neighborsViewNorth.TabIndex = 0;
             this.neighborsViewNorth.ViewModel = null;
             // 
-            // panel1
+            // nieghborsPanel
             // 
-            this.panel1.Controls.Add(this.neighborsViewEast);
-            this.panel1.Controls.Add(this.neighborsViewSouth);
-            this.panel1.Controls.Add(this.neighborsViewWest);
-            this.panel1.Controls.Add(this.neighborsViewNorth);
-            this.panel1.Location = new System.Drawing.Point(241, 264);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(575, 252);
-            this.panel1.TabIndex = 24;
+            this.nieghborsPanel.Controls.Add(this.neighborsViewEast);
+            this.nieghborsPanel.Controls.Add(this.neighborsViewSouth);
+            this.nieghborsPanel.Controls.Add(this.neighborsViewWest);
+            this.nieghborsPanel.Controls.Add(this.neighborsViewNorth);
+            this.nieghborsPanel.Location = new System.Drawing.Point(241, 264);
+            this.nieghborsPanel.Name = "nieghborsPanel";
+            this.nieghborsPanel.Size = new System.Drawing.Size(575, 252);
+            this.nieghborsPanel.TabIndex = 24;
             // 
             // neighborsViewEast
             // 
             this.neighborsViewEast.Direction = Zork.Directions.East;
             this.neighborsViewEast.Location = new System.Drawing.Point(384, 71);
             this.neighborsViewEast.Name = "neighborsViewEast";
+            this.neighborsViewEast.Neighbor = null;
             this.neighborsViewEast.Room = null;
             this.neighborsViewEast.Size = new System.Drawing.Size(187, 88);
             this.neighborsViewEast.TabIndex = 3;
@@ -175,6 +177,7 @@
             this.neighborsViewSouth.Direction = Zork.Directions.West;
             this.neighborsViewSouth.Location = new System.Drawing.Point(3, 71);
             this.neighborsViewSouth.Name = "neighborsViewSouth";
+            this.neighborsViewSouth.Neighbor = null;
             this.neighborsViewSouth.Room = null;
             this.neighborsViewSouth.Size = new System.Drawing.Size(187, 88);
             this.neighborsViewSouth.TabIndex = 2;
@@ -185,6 +188,7 @@
             this.neighborsViewWest.Direction = Zork.Directions.South;
             this.neighborsViewWest.Location = new System.Drawing.Point(191, 141);
             this.neighborsViewWest.Name = "neighborsViewWest";
+            this.neighborsViewWest.Neighbor = null;
             this.neighborsViewWest.Room = null;
             this.neighborsViewWest.Size = new System.Drawing.Size(187, 88);
             this.neighborsViewWest.TabIndex = 1;
@@ -194,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.nieghborsPanel);
             this.Controls.Add(this.roomNameLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.descriptionTextBox);
@@ -207,7 +211,7 @@
             this.Size = new System.Drawing.Size(832, 542);
             ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.nieghborsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,7 +230,7 @@
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         private System.Windows.Forms.BindingSource roomsBindingSource;
         private User_Controls.NeighborsView neighborsViewNorth;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel nieghborsPanel;
         private User_Controls.NeighborsView neighborsViewEast;
         private User_Controls.NeighborsView neighborsViewSouth;
         private User_Controls.NeighborsView neighborsViewWest;

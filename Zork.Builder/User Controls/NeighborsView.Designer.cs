@@ -34,8 +34,6 @@
             // 
             // directionTextBox
             // 
-            this.directionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.directionTextBox.Location = new System.Drawing.Point(3, 14);
             this.directionTextBox.Name = "directionTextBox";
             this.directionTextBox.ReadOnly = true;
@@ -45,15 +43,13 @@
             // neighborComboBox
             // 
             this.neighborComboBox.AllowDrop = true;
-            this.neighborComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.neighborComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.neighborComboBox.FormattingEnabled = true;
             this.neighborComboBox.Location = new System.Drawing.Point(3, 46);
             this.neighborComboBox.Name = "neighborComboBox";
             this.neighborComboBox.Size = new System.Drawing.Size(181, 28);
             this.neighborComboBox.TabIndex = 1;
-            this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.neighborComboBox_SelectedIndexChanged);
+            this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.NeighborComboBox_SelectedIndexChanged);
             // 
             // NeighborsView
             // 

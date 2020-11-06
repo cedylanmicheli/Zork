@@ -24,9 +24,13 @@ namespace Zork.Builder
                     mViewModel = value;
                     gameViewModelBindingSource.DataSource = mViewModel;
 
+
+                    Room selectedRoom = roomListBox.SelectedItem as Room;
+
                     foreach (NeighborsView neighbor in mNeighborViews)
                     {
                         neighbor.ViewModel = mViewModel;
+                        if (roomListBox.SelectedItem != null) neighbor.Room = roomListBox.SelectedItem as Room;
                     }
                 }
             }
@@ -51,6 +55,7 @@ namespace Zork.Builder
                         mViewModel.Game.World.RoomsByName.Add(addRoomForm.RoomName, room);
 
                         var neighbors = new Dictionary<Directions, string>();
+
                         room.NeighborNames = neighbors;
                         room.UpdateNeighbors(mViewModel.Game.World);
                     }
@@ -68,9 +73,8 @@ namespace Zork.Builder
 
             foreach (var neighborView in mNeighborViews)
             {
-               // neighborView.Room = (room)roomListBox.SelectedItem;
+                    neighborView.Room = (Room)roomListBox.SelectedItem;
             }
-
 
             deleteButton.Enabled = roomListBox.SelectedItem != null;
             roomNameTextBox.Enabled = roomListBox.SelectedItem != null;
