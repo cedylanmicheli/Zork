@@ -67,10 +67,6 @@ namespace Zork.Builder.User_Controls
                         neighborComboBox.SelectedIndexChanged += NeighborComboBox_SelectedIndexChanged;
                     }
                 }
-                else
-                {
-                    neighborComboBox.DataSource = null;
-                }
             }
         }
 
@@ -105,8 +101,6 @@ namespace Zork.Builder.User_Controls
                     mRoom.Neighbors[Direction] = neighbor;
                 }
             }    
-
-
         }
     }
 }
