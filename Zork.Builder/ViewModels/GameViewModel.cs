@@ -40,6 +40,12 @@ namespace Zork.Builder.ViewModels
             set => mGame.GoodbyeMessage = value; 
         }
 
+     //  public string StartingLocation
+     //  {
+     //      get => mGame.StartingLocation;
+     //      set => mGame.StartingLocation = value;
+     //  }
+
         public GameViewModel(Game game = null)
         {
             Game = game;

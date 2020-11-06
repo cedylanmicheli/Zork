@@ -79,7 +79,9 @@ namespace Zork.Builder
                 mViewModel = new GameViewModel(Game);
                 mViewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
                 mViewModel.FullPath = openFileDialog.FileName;
-                
+                GameFileName = openFileDialog.FileName;
+
+                UpdateTitle();
                 BindFields();
                 EnableMenus();
             }
@@ -103,6 +105,8 @@ namespace Zork.Builder
             Game = new Game(new World(), null);
             mViewModel = new GameViewModel(Game);
 
+
+            UpdateTitle();
             BindFields();
             EnableMenus();
         }

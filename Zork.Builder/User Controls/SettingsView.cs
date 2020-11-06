@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
 using Zork.Builder.ViewModels;
 
 namespace Zork.Builder.User_Controls
@@ -15,14 +17,26 @@ namespace Zork.Builder.User_Controls
                 {
                     mViewModel = value;
                     gameViewModelBindingSource.DataSource = mViewModel;
+                    startingDropdown.DataSource = mViewModel.Rooms;
+
+                    if (mViewModel.Game.StartingLocation == null)
+                    {
+                        StartingLocation = mViewModel.Rooms.FirstOrDefault();
+                    }
+                    //else StartingLocation = mViewModel.Rooms[mViewModel.Game.StartingLocation];
                 }
             }
         }
-
+        public Room StartingLocation
+        {
+            get => startingDropdown.SelectedItem as Room;
+            set => startingDropdown.SelectedItem = value;
+        }
 
         public SettingsView()
         {
             InitializeComponent();
+           startingDropdown.DataSource = Array.Empty<Room>();
         }
 
         private void WelcomeTextBox_TextChanged(object sender, System.EventArgs e)
@@ -33,6 +47,18 @@ namespace Zork.Builder.User_Controls
         private void ExitTextBox_TextChanged(object sender, System.EventArgs e)
         {
             mViewModel.Game.GoodbyeMessage = exitTextBox.Text;
+        }
+
+        private void StartingDropdown_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+           if(mViewModel != null)
+            {
+                if (mViewModel.Game.StartingLocation != null)
+                {
+                    mViewModel.Game.StartingLocation = StartingLocation.Name;
+                }
+            }
+
         }
     }
 }

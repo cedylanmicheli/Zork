@@ -9,10 +9,10 @@ namespace Zork.Builder.User_Controls
     {
         public static readonly Room NoNeighbor = new Room("<None>");
 
-        //TODO
-        //Make sure selected room isn't in neighbors dropdown list
-        //Select an actual Neighbor
-
+        private Directions mDirection;
+        private GameViewModel mViewModel;
+        private Room mRoom;
+        
         public GameViewModel ViewModel { 
             get => mViewModel; 
             set
@@ -47,14 +47,15 @@ namespace Zork.Builder.User_Controls
                     {
                         List<Room> neighbors = new List<Room>(mViewModel.Rooms);
                         neighbors.Insert(0, NoNeighbor);
+                        neighbors.Remove(mRoom);
 
                         neighborComboBox.SelectedIndexChanged -= NeighborComboBox_SelectedIndexChanged;
 
                         neighborComboBox.DataSource = neighbors;
 
-                        if(mRoom.Neighbors != null)
+                        if (mRoom.Neighbors != null)
                         {
-                           if (mRoom.Neighbors.TryGetValue(Direction, out Room neighbor))
+                            if (mRoom.Neighbors.TryGetValue(Direction, out Room neighbor))
                             {
                                 Neighbor = neighbor;
                             }
@@ -63,7 +64,6 @@ namespace Zork.Builder.User_Controls
                                 Neighbor = NoNeighbor;
                             }
                         }
-                        
 
                         neighborComboBox.SelectedIndexChanged += NeighborComboBox_SelectedIndexChanged;
                     }
@@ -77,10 +77,6 @@ namespace Zork.Builder.User_Controls
             Direction = mDirection;
             neighborComboBox.DataSource = Array.Empty<Room>();
         }
-        
-        private Directions mDirection;
-        private Room mRoom;
-        private GameViewModel mViewModel;
 
         public Room Neighbor
         {

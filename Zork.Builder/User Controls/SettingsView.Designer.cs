@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.startingDropdown = new System.Windows.Forms.ComboBox();
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exitLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.startingLabel = new System.Windows.Forms.Label();
@@ -37,18 +39,29 @@
             this.exitTextBox = new System.Windows.Forms.TextBox();
             this.filenameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // startingDropdown
             // 
+            this.startingDropdown.DataSource = this.roomsBindingSource;
+            this.startingDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.startingDropdown.FormattingEnabled = true;
             this.startingDropdown.Location = new System.Drawing.Point(23, 398);
             this.startingDropdown.Name = "startingDropdown";
             this.startingDropdown.Size = new System.Drawing.Size(228, 28);
             this.startingDropdown.TabIndex = 27;
-            this.startingDropdown.Text = "Room";
+            this.startingDropdown.SelectedIndexChanged += new System.EventHandler(this.StartingDropdown_SelectedIndexChanged);
+            // 
+            // roomsBindingSource
+            // 
+            this.roomsBindingSource.DataMember = "Rooms";
+            this.roomsBindingSource.DataSource = this.gameViewModelBindingSource;
+            // 
+            // gameViewModelBindingSource
+            // 
+            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
             // 
             // exitLabel
             // 
@@ -122,10 +135,6 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "File Name";
             // 
-            // gameViewModelBindingSource
-            // 
-            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
-            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -140,6 +149,7 @@
             this.Controls.Add(this.startingLabel);
             this.Name = "SettingsView";
             this.Size = new System.Drawing.Size(712, 450);
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,5 +166,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         public System.Windows.Forms.TextBox welcomeTextBox;
+        private System.Windows.Forms.BindingSource roomsBindingSource;
     }
 }
