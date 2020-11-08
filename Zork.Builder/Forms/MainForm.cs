@@ -102,9 +102,9 @@ namespace Zork.Builder
         private void CreateGame()
         {
             GameFileName = null;
+            WorldView.isChanged = false;
             Game = new Game(new World(), null);
             mViewModel = new GameViewModel(Game);
-
 
             UpdateTitle();
             BindFields();
@@ -123,6 +123,29 @@ namespace Zork.Builder
             gameViewModelBindingSource.DataSource = mViewModel;
             worldView.ViewModel = mViewModel;
             settingsView.ViewModel = mViewModel;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (WorldView.isChanged)
+            {
+                string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
+                DialogResult dialogResult = MessageBox.Show($"Save changes to {gameFilename}?", "Zork", MessageBoxButtons.YesNoCancel);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (string.IsNullOrWhiteSpace(GameFileName))
+                    {
+                        saveAsToolStripMenuItem.PerformClick();
+                    }
+                    else SaveGame();
+                }
+
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

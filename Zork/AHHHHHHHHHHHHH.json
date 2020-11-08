@@ -1,0 +1,45 @@
+{
+  "World": {
+    "Rooms": [
+      {
+        "Name": "BORK",
+        "Description": null,
+        "Neighbors": {
+          "North": "ZORK"
+        }
+      },
+      {
+        "Name": "ZORK",
+        "Description": null,
+        "Neighbors": {
+          "North": "DORK"
+        }
+      },
+      {
+        "Name": "DORK",
+        "Description": "big meat",
+        "Neighbors": {
+          "North": "CORK"
+        }
+      },
+      {
+        "Name": "PORK",
+        "Description": null,
+        "Neighbors": {}
+      },
+      {
+        "Name": "CORK",
+        "Description": null,
+        "Neighbors": {}
+      },
+      {
+        "Name": "THOM YORKE",
+        "Description": "AHH",
+        "Neighbors": {}
+      }
+    ]
+  },
+  "StartingLocation": "BORK",
+  "WelcomeMessage": "I'm in insufferable",
+  "GoodbyeMessage": "Pain"
+}
