@@ -16,17 +16,37 @@ namespace Zork.Builder.User_Controls
                 if (mViewModel != value)
                 {
                     mViewModel = value;
-                    gameViewModelBindingSource.DataSource = mViewModel;
-                    startingDropdown.DataSource = mViewModel.Rooms;
 
-                    if (mViewModel.Game.StartingLocation == null)
+                    gameViewModelBindingSource.DataSource = mViewModel;
+
+                    startingDropdown.SelectedIndexChanged -= StartingDropdown_SelectedIndexChanged;
+                                  
+                    startingDropdown.DataSource = roomsBindingSource;
+
+                    if (StartingLocation == null)
                     {
                         StartingLocation = mViewModel.Rooms.FirstOrDefault();
                     }
-                    //else StartingLocation = mViewModel.Rooms[mViewModel.Game.StartingLocation];
+                    else
+                    {
+                        foreach (Room room in mViewModel.Rooms)
+                        {
+                            if (mViewModel.Game.StartingLocation.Equals(room.Name))
+                            {
+                                StartingLocation = room;
+
+                                mViewModel.Game.StartingLocation = room.Name;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    startingDropdown.SelectedIndexChanged += StartingDropdown_SelectedIndexChanged;
+
                 }
             }
         }
+
         public Room StartingLocation
         {
             get => startingDropdown.SelectedItem as Room;
@@ -53,7 +73,7 @@ namespace Zork.Builder.User_Controls
         {
            if(mViewModel != null)
             {
-                if (mViewModel.Game.StartingLocation != null)
+                if (StartingLocation != null)
                 {
                     mViewModel.Game.StartingLocation = StartingLocation.Name;
                 }

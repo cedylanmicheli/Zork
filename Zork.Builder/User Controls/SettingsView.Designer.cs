@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.startingDropdown = new System.Windows.Forms.ComboBox();
-            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exitLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.startingLabel = new System.Windows.Forms.Label();
@@ -39,8 +39,8 @@
             this.exitTextBox = new System.Windows.Forms.TextBox();
             this.filenameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // startingDropdown
@@ -54,14 +54,14 @@
             this.startingDropdown.TabIndex = 27;
             this.startingDropdown.SelectedIndexChanged += new System.EventHandler(this.StartingDropdown_SelectedIndexChanged);
             // 
+            // gameViewModelBindingSource
+            // 
+            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
+            // 
             // roomsBindingSource
             // 
             this.roomsBindingSource.DataMember = "Rooms";
             this.roomsBindingSource.DataSource = this.gameViewModelBindingSource;
-            // 
-            // gameViewModelBindingSource
-            // 
-            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.GameViewModel);
             // 
             // exitLabel
             // 
@@ -149,8 +149,8 @@
             this.Controls.Add(this.startingLabel);
             this.Name = "SettingsView";
             this.Size = new System.Drawing.Size(712, 450);
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
