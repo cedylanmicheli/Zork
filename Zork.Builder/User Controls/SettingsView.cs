@@ -25,7 +25,10 @@ namespace Zork.Builder.User_Controls
 
                     if (StartingLocation == null)
                     {
+                        if (mViewModel.Rooms != null) 
+                        { 
                         StartingLocation = mViewModel.Rooms.FirstOrDefault();
+                        }
                     }
                     else
                     {

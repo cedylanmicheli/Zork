@@ -14,17 +14,40 @@ namespace Zork.Builder.ViewModels
             {
                 if(mGame != value)
                 {
+                    if (mGame != null)
+                    {
+                        mGame.PropertyChanged -= Game_PropertyChanged;
+                        mGame.World.PropertyChanged -= Game_PropertyChanged;
+                        foreach (Room room in mGame.World.Rooms)
+                        {
+                            room.PropertyChanged -= Game_PropertyChanged;
+                        }
+                    }
+
                     mGame = value;
-                    if(mGame != null)
+                    if (mGame != null)
                     {
                         Rooms = new BindingList<Room>(mGame.World.Rooms);
+                        mGame.PropertyChanged += Game_PropertyChanged;
+                        mGame.World.PropertyChanged += Game_PropertyChanged;
+                        foreach (Room room in mGame.World.Rooms)
+                        {
+                            room.PropertyChanged += Game_PropertyChanged;
+                        }
                     }
                     else
                     {
                         Rooms = new BindingList<Room>(Array.Empty<Room>());
                     }
+
                 }
             }
+        }
+
+        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            IsChanged = true;
+            PropertyChanged?.Invoke(this, e);
         }
 
         public BindingList<Room> Rooms { get; set; }
@@ -46,5 +69,6 @@ namespace Zork.Builder.ViewModels
         }
 
         private Game mGame;
+        public bool IsChanged { get; set; }
     }
 }

@@ -21,15 +21,21 @@ namespace Zork.Builder
             }
         }
 
-        private GameViewModel mViewModel;
+        private GameViewModel mViewModel = new GameViewModel();
         private bool _IsGameLoaded;
 
         public MainForm()
         {
             InitializeComponent();
+            mViewModel.PropertyChanged += ViewModel_PropertyChanged;
             UpdateTitle();
             BindFields();
             IsGameLoaded = false;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
         }
 
         #region File Menu Strip
@@ -64,16 +70,60 @@ namespace Zork.Builder
             {
                 jsonSerializer.Serialize(jsonWriter, mViewModel.Game);
             }
+            mViewModel.IsChanged = false;
         }
         #endregion Saving Game
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateGame();
+            if (mViewModel.IsChanged)
+            {
+                string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
+                DialogResult result = MessageBox.Show($"Save changes to {gameFilename}?", "Zork Builder", MessageBoxButtons.YesNoCancel);
+
+                if (result == DialogResult.Yes)
+                {
+                    if (string.IsNullOrWhiteSpace(GameFileName))
+                    {
+                        saveAsToolStripMenuItem.PerformClick();
+                    }
+                    else SaveGame();
+                }
+                else if (result == DialogResult.No)
+                {
+                    CreateGame();
+                }
+
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+            else CreateGame();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mViewModel.IsChanged)
+            {
+                string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
+                DialogResult result = MessageBox.Show($"Save changes to {gameFilename}?", "Zork Builder", MessageBoxButtons.YesNoCancel);
+
+                if (result == DialogResult.Yes)
+                {
+                    if (string.IsNullOrWhiteSpace(GameFileName))
+                    {
+                        saveAsToolStripMenuItem.PerformClick();
+                    }
+                    else SaveGame();
+                }
+
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 mViewModel = new GameViewModel(Game);
@@ -87,7 +137,7 @@ namespace Zork.Builder
             }
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+            private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -102,7 +152,6 @@ namespace Zork.Builder
         private void CreateGame()
         {
             GameFileName = null;
-            WorldView.isChanged = false;
             Game = new Game(new World(), null);
             mViewModel = new GameViewModel(Game);
 
@@ -127,10 +176,10 @@ namespace Zork.Builder
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (WorldView.isChanged)
+            if (mViewModel.IsChanged)
             {
                 string gameFilename = string.IsNullOrEmpty(GameFileName) ? "Untitled" : Path.GetFileNameWithoutExtension(GameFileName);
-                DialogResult dialogResult = MessageBox.Show($"Save changes to {gameFilename}?", "Zork", MessageBoxButtons.YesNoCancel);
+                DialogResult dialogResult = MessageBox.Show($"Save changes to {gameFilename}?", "Zork Builder", MessageBoxButtons.YesNoCancel);
 
                 if (dialogResult == DialogResult.Yes)
                 {

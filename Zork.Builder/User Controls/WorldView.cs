@@ -58,7 +58,6 @@ namespace Zork.Builder
                         
                         room.NeighborNames = neighbors;
                         room.UpdateNeighbors(mViewModel.Game.World);
-                        isChanged = true;
                     }
                     else
                     {
@@ -103,12 +102,10 @@ namespace Zork.Builder
 
                 ViewModel.Rooms.Remove((Room)roomListBox.SelectedItem);
                 roomListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
-                isChanged = true;
             }
         }
 
         private readonly List<NeighborsView> mNeighborViews = new List<NeighborsView>();
-        public static bool isChanged { get; set; }
     }
 
 }
