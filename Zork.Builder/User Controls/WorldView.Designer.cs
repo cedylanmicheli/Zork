@@ -132,7 +132,7 @@
             // 
             // roomNameTextBox
             // 
-            this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
             this.roomNameTextBox.Enabled = false;
             this.roomNameTextBox.Location = new System.Drawing.Point(241, 94);
             this.roomNameTextBox.Name = "roomNameTextBox";

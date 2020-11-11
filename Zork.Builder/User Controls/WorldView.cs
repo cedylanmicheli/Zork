@@ -86,6 +86,21 @@ namespace Zork.Builder
         {
             if (MessageBox.Show("Delete this room?", "Zork Builder", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
             {
+                
+                Room deletedRoom = roomListBox.SelectedItem as Room;
+                foreach (Room room in ViewModel.Rooms)
+                {
+                    var neighbors = new Dictionary<Directions, string>();
+
+                    foreach (KeyValuePair<Directions, string> neighbor in room.NeighborNames)
+                    {
+                        if (neighbor.Value != deletedRoom.Name) neighbors.Add(neighbor.Key, neighbor.Value);
+                    }
+
+                    room.NeighborNames = neighbors;
+                }
+
+
                 ViewModel.Rooms.Remove((Room)roomListBox.SelectedItem);
                 roomListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
                 isChanged = true;
