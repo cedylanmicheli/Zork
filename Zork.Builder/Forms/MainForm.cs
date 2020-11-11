@@ -154,6 +154,7 @@ namespace Zork.Builder
             GameFileName = null;
             Game = new Game(new World(), null);
             mViewModel = new GameViewModel(Game);
+            mViewModel.IsChanged = true;
 
             UpdateTitle();
             BindFields();
