@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Zork
 {
@@ -13,25 +13,25 @@ namespace Zork
         public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
-        public Dictionary<string, Room> RoomsByName => mRoomsByName;
+        public Dictionary<string, Room> RoomsByName => _roomsByName;
 
         public World()
         {
             Rooms = new List<Room>();
-            mRoomsByName = new Dictionary<string, Room>();
+            _roomsByName = new Dictionary<string, Room>();
         }
-        
+
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
+            _roomsByName = Rooms.ToDictionary(room => room.Name, room => room);
 
-            foreach(Room room in Rooms)
+            foreach (Room room in Rooms)
             {
                 room.UpdateNeighbors(this);
             }
-        }
-        
-        private Dictionary<string, Room> mRoomsByName;
+        } 
+
+        private Dictionary<string, Room> _roomsByName;
     }
 }

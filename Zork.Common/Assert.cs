@@ -2,19 +2,34 @@
 using System.Diagnostics;
 
 namespace Zork
-{ 
-    class Assert
+{
+    public static class Assert
     {
         [Conditional("DEBUG")]
-        public static void NotNull(object obj, string message = null)
+        public static void IsNotNull(object obj, string message = null)
         {
-            if (obj is null) throw new ArgumentNullException(message);
+            if (obj is null)
+            {
+                throw new ArgumentNullException(message);
+            }
         }
 
         [Conditional("DEBUG")]
         public static void IsTrue(bool expression, string message = null)
         {
-            if (expression == false) throw new Exception(message);
+            if (expression == false)
+            {
+                throw new Exception(message);
+            }
+        }
+
+        [Conditional("DEBUG")]
+        public static void IsFalse(bool expression, string message = null)
+        {
+            if (expression)
+            {
+                throw new Exception(message);
+            }
         }
     }
 }
