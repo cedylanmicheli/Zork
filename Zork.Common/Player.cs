@@ -51,7 +51,7 @@ namespace Zork
                 if (_score != value)
                 {
                     _score = value;
-                    ScoreChanged?.Invoke(this, _moves);
+                    ScoreChanged?.Invoke(this, _score);
                 }
 
             }

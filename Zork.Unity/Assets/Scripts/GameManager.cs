@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
 
 
         _game.Player.LocationChanged += (sender, e) => LocationText.text = e.NewLocation != null ? e.NewLocation.Name : "Unknown";
+        _game.Player.ScoreChanged += (sender, e) => ScoreText.text = $"Score: {e}";
         _game.Player.MovesChanged += (sender, e) => MoveText.text = $"Moves: {e}";
-        _game.Player.ScoreChanged += (sender, e) => MoveText.text = $"Score: {e}";
 
         LocationText.text = _game.Player.Location.Name;
         InputService.InputField.Select();
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         LocationText.text = e.NewLocation?.Name;
     }
+
 
     private void Update()
     {
