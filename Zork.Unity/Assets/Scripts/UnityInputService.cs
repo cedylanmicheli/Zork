@@ -18,7 +18,6 @@ public class UnityInputService : MonoBehaviour, IInputService
     private void Awake()
     {
         commandLength = _commands.Length;
-        Debug.Log(commandLength);
     }
 
     public void ProcessInput()
